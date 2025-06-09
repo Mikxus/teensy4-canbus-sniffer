@@ -51,14 +51,15 @@ void rx_thread(void *arg1, void *arg2, void *arg3)
     {
         k_msgq_get(&can_rx_que, &frame, K_FOREVER);
 
-        LOG_INF("id: %d data: ", frame.id);
+        printk("id: %02x data: ", frame.id);
         sys_be_to_cpu(frame.data, sizeof(frame.data));
 
         for (int i = 0; i < sizeof(frame.data) / sizeof(uint8_t); i++)
         {
-            LOG_INF("%02x", frame.data[i]);
+            printk("%02x ", frame.data[i]);
         }
-        LOG_INF("\n");
+        printk("\n");
+        k_sleep(K_MSEC(100));
     }
 }
 
