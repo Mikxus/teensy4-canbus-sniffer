@@ -4,6 +4,16 @@
 	 chosen {
       zephyr,shell-uart = &cdc_acm_uart0;
 	};
+
+	chosen {
+		zephyr,canbus = &flexcan1;
+	};
+};
+
+&flexcan1 {
+	pinctrl-0 = <&pinmux_flexcan1>;
+	pinctrl-names = "default";
+	status = "okay";
 };
 
 &zephyr_udc0 {
